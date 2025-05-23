@@ -7,6 +7,11 @@ import tempfile
 app = FastAPI()
 
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the audio transcription service!"}
+
+
 @app.post("/transcribe")
 async def transcribe(file: UploadFile = File(...)):
     if file.content_type != "audio/wav":

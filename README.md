@@ -68,6 +68,14 @@ python app/test.py
 
 ---
 
+## CI/CD & Azure Deployment
+
+This project uses GitHub Actions for continuous integration and deployment. On every push to the `main` branch, the application is automatically built, tested, and deployed live to Azure Web Apps using a containerized workflow.
+
+- **CI:** Automated Container Building via GitHub Actions.
+- **CD:** Docker image is built and pushed to DockerHub, then deployed to Azure App Service.
+
+
 ## Limitations
 
 - Only `.wav` files at 16kHz, of atleast 5 seconds duration are accepted.
