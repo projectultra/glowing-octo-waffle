@@ -18,7 +18,7 @@ async def transcribe(file: UploadFile = File(...)):
         temp.write(content)
         temp.flush()
 
-        duration_ok = validate_audio(temp.name)
+        duration_ok = await validate_audio(temp.name)
         if not duration_ok:
             raise HTTPException(status_code=400, detail="Audio must be 5 seconds long")
 
