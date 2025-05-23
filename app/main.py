@@ -22,5 +22,5 @@ async def transcribe(file: UploadFile = File(...)):
         if not duration_ok:
             raise HTTPException(status_code=400, detail="Audio must be 5 seconds long")
 
-        text = transcribe_audio(temp.name)
+        text = await transcribe_audio(temp.name)
         return JSONResponse(content={"transcription": text})
