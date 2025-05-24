@@ -9,7 +9,7 @@ _executor = ThreadPoolExecutor()
 
 async def validate_audio(path):
     y, sr = await asyncio.get_event_loop().run_in_executor(
-        _executor, librosa.load, path, 16000
+        _executor, lambda p: librosa.load(p, sr=16000), path
     )
     duration = librosa.get_duration(y=y, sr=sr)
     return 5.0 <= duration
@@ -18,7 +18,7 @@ async def validate_audio(path):
 async def preprocess_audio(path):
     sample_rate = 16000
     samples, _ = await asyncio.get_event_loop().run_in_executor(
-        _executor, librosa.load, path, sample_rate
+        _executor, lambda p: librosa.load(p, sr=sample_rate), path
     )
     samples = samples * 32768  # scaling
     mel_spec = librosa.feature.melspectrogram(
